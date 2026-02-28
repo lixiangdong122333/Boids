@@ -1,9 +1,10 @@
 import { defineConfig } from 'vite';
 import glsl from 'vite-plugin-glsl';
+import { viteSingleFile } from 'vite-plugin-singlefile';
 
 export default defineConfig({
     base: './', // Use relative paths for assets so it can be hosted anywhere (like GitHub Pages)
-    plugins: [glsl()],
+    plugins: [glsl(), viteSingleFile()],
     server: {
         open: true,
     },
@@ -16,14 +17,5 @@ export default defineConfig({
                 drop_debugger: true,
             },
         },
-        rollupOptions: {
-            output: {
-                // Manual chunks for better caching
-                manualChunks: {
-                    three: ['three'],
-                    gui: ['lil-gui']
-                }
-            }
-        }
     }
 });
